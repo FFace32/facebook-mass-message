@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+<div class="d-flex h-100">
+    <div id="messagesModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="messagesTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messagesTitle">Select Message</h5>
+                </div>
+                <div class="modal-body">
+                    Please select the message you want to work on:
+                    <ul class="list-group" id="messages"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="ok" class="btn btn-primary" disabled>Ok</button>
+                    <button type="button" id="new" class="btn btn-primary">New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="errorModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="errorTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorTitle">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-auto">
+        <div class="row m-4">
+            <div class="col">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h4>Message</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <textarea id="message" class="form-control mb-4"
+                                  placeholder="The message that's going to get sent"></textarea>
+                        <div class="row">
+                            <div class="col">
+                                <h4>Variables</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <ul class="list-group" id="variableList">
+                        </ul>
+                        <hr>
+                        <form id="variableForm">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" id="name" class="form-control" placeholder="Variable name"
+                                           required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" id="value" class="form-control" placeholder="Default value">
+                                </div>
+                                <button type="submit" class="btn btn-primary mr-3">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-4">
+            <div class="col mb-4 mb-md-0">
+                <div class="card shadow-lg h-100">
+                    <div class="card-header">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <input type="text" id="friendListSearch" class="form-control" placeholder="Search">
+                            <div class="input-group-append">
+                                <button type="button" id="friendListSelect" class="btn btn-secondary"
+                                        title="Select all">
+                                    <i class="far fa-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group" id="friendList">
+                            <% for ( const friend of friends ) { %>
+                                <li class="list-group-item list-group-item-action friend">
+                                    <div class="circle-check" data-id="<%= friend.id %>"
+                                         data-seed="<%= Math.floor(Math.random() * 999999) %>">
+                                        <span></span>
+                                        <img src="<%= friend.pic %>" alt="<%= friend.name + "'s profile picture" %>" class="rounded-circle">
+                                    </div>
+                                    <span class="ml-1"><%= friend.name %> <i>(<span class="nickname"
+                                                                                    contenteditable="true"><%= friend.nname %></span>)</i></span>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card shadow-lg" id="userData">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h4>Message Preview</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <textarea id="messagePreview" class="form-control mb-2" readonly></textarea>
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" id="regenerate" class="btn btn-primary float-right">Regenerate
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h4>Variables</h4>
+                            </div>
+                            <div class="col">
+                                <form>
+                                    <div class="form-check mt-2 float-right">
+                                        <input class="form-check-input" type="checkbox" id="showAll">
+                                        <label class="form-check-label" for="showAll">Show all</label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <ul class="list-group" id="friendVariableList">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-4">
+            <div class="col col-md-9 mb-2 mb-md-0">
+                <button type="button" id="send" class="btn btn-primary shadow-lg w-100">Send</button>
+            </div>
+            <div class="col-md">
+                <button type="button" id="logout" class="btn btn-primary shadow-lg w-100">
+                    <img src="<%= user.profilePicture %>" alt="<%= user.fullName + "'s profile picture" %>" width="20" class="rounded-circle">
+                    <span class="ml-1">Log out</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="variable">
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col">
+                <input type="text" id="templateName" class="form-control" readonly>
+            </div>
+            <div class="col">
+                <input type="text" id="templateValue" class="form-control" placeholder="Default value">
+            </div>
+            <button type="button" id="removeVariable" class="close mr-2" aria-label="Remove">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </li>
+</template>
+
+<template id="messageTemplate">
+    <li class="list-group-item list-group-item-action">
+        <textarea class="form-control" readonly></textarea>
+    </li>
+</template>
+
+<% include partials/script %>
+<script src="accent-fold.js"></script>
+<script src="ResizeSensor.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

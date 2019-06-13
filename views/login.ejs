@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head %>
+</head>
+<body>
+<div class="d-flex h-100">
+    <div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="errorTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorTitle">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-auto">
+        <div class="card shadow-lg m-4">
+            <h4 class="card-header">Log In</h4>
+            <div class="card-body">
+                <form id="form">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" class="form-control" placeholder="Email" required>
+                        <!-- Should this not be type="email"? Because you can apparently login with a phone number -->
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="form-group" id="code-group">
+                        <label for="code">Code:</label>
+                        <input type="number" id="code" class="form-control" placeholder="Code">
+                    </div>
+                    <button type="submit" id="login" class="btn btn-primary d-flex mx-auto">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include partials/script %>
+<script src="login.js"></script>
+</body>
+</html>

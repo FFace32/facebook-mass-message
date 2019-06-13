@@ -1,0 +1,66 @@
+html, body {
+    height: 100%;
+}
+
+#code-group, .nickname br {
+    display: none;
+}
+
+.list-group {
+    overflow: auto;
+}
+
+#messages {
+    max-height: 262px;
+}
+
+#variableList, #friendVariableList {
+    max-height: 190px;
+}
+
+#friendList {
+    max-height: 167px;
+}
+
+span.ml-1 {
+    cursor: default;
+}
+
+.circle-check {
+    display: inline;
+    cursor: pointer;
+}
+
+.circle-check span {
+    display: none;
+    color: #ffffff;
+    background-color: #379bff;
+    opacity: 0.7;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+    position: absolute;
+    text-align: center;
+}
+
+.circle-check span:before {
+    font-family: "Font Awesome\ 5 Free";
+    font-weight: 900;
+    content: "\f00c";
+}
+
+.nickname {
+    cursor: text;
+}
+
+.first-visible-list-group-item {
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.last-visible-list-group-item {
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+    margin-bottom: 0;
+}
