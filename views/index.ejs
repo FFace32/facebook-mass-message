@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% include partials/head %>
+    <%- include( "partials/head" ); %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
@@ -101,7 +101,7 @@
                             <% for ( const friend of friends ) { %>
                                 <li class="list-group-item list-group-item-action friend">
                                     <div class="circle-check" data-id="<%= friend.id %>"
-                                         data-seed="<%= Math.floor(Math.random() * 999999) %>">
+                                         data-seed="<%= Math.floor( Math.random() * 999999 ); %>">
                                         <span></span>
                                         <img src="<%= friend.pic %>" alt="<%= friend.name + "'s profile picture" %>" class="rounded-circle">
                                     </div>
@@ -185,7 +185,7 @@
     </li>
 </template>
 
-<% include partials/script %>
+<%- include( "partials/script" ); %>
 <script src="accent-fold.js"></script>
 <script src="ResizeSensor.js"></script>
 <script src="index.js"></script>

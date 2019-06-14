@@ -1,6 +1,6 @@
 {
   "name": "facebook-mass-message",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Send a mass message on Facebook",
   "main": "index.js",
   "scripts": {

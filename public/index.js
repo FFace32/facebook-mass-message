@@ -1,3 +1,5 @@
+"use strict";
+
 var messageID = -1;
 
 function get( url, data, success, dataType ) {
@@ -180,7 +182,7 @@ $( function () {
 
                 updateMessagePreview();
             }
-        } );
+        }, "json" );
     } );
 
     var friendList = $( "#friendList" );
@@ -318,7 +320,7 @@ $( function () {
             }
             else
                 location.href = "/";
-        } );
+        }, "json" );
     } );
 
     $( "#logout" ).on( "click", function () {
