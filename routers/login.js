@@ -49,7 +49,9 @@ module.exports = ( app, users ) => {
 
             let userData;
             api.getUserInfo( req.session.uid = api.getCurrentUserID(), ( err, ret ) => {
-                if ( !err )
+                if ( err )
+                    console.log( err );
+                else
                 {
                     for ( const prop in ret )
                     {

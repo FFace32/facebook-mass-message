@@ -1,6 +1,6 @@
 {
   "name": "facebook-mass-message",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Send a mass message on Facebook",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,7 @@
   },
   "author": "FuckFace",
   "license": "ISC",
+  "repository": "github:FFace32/facebook-mass-message",
   "dependencies": {
     "body-parser": "^1.18.3",
     "connect-loki": "^1.1.0",
