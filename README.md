@@ -16,7 +16,7 @@ Make sure you have [Node.js](https://nodejs.org) installed then:
 ## Formatting the message
 
 The message can contain variables and [spintax](http://umstrategies.com/what-is-spintax).  
-The format for using a variable is `%variable name%` and the format for using (nested) spintax is `{part1|{part2a|part2b}|part3`.  
+The format for using a variable is `%variable name%` and the format for using (nested) spintax is `{part1|{part2a|part2b}|part3}`.  
 Here are some examples:
 - `Hello {world|worlds}!` outputs `Hello world!` or `Hello worlds!`
 - Implying you have a `color` variable with the value of `green`:  
