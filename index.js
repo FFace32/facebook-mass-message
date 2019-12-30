@@ -5,6 +5,7 @@ const LokiStore = require( "connect-loki" )( session );
 const loki = require( "lokijs" );
 const open = require( "open" );
 const os = require( "os" );
+const path = require( "path" );
 
 const PORT = 4444;
 
@@ -20,11 +21,12 @@ request( { url: "https://raw.githubusercontent.com/FFace32/facebook-mass-message
 
     const app = express();
     app
-        .use( express.static( "public" ) )
-        .use( express.static( "favicon" ) )
+        .use( express.static( path.join( __dirname, "public" ) ) )
+        .use( express.static( path.join( __dirname, "favicon" ) ) )
         .use( require( "body-parser" ).urlencoded( { extended: true } ) )
         .use( session( { name: "f-m-m.sid", secret: "FuckFace", resave: false, saveUninitialized: false, store: new LokiStore(), cookie: { maxAge: 1000 * 60 * 60 * 24 * 14 } } ) )
-        .set( "view engine", "ejs" );
+        .set( "view engine", "ejs" )
+        .set( "views", path.join( __dirname, "views" ) );
 
     app.use( ( req, res, next ) => {
         if ( req.body.message_id )
