@@ -25,7 +25,7 @@ Here are some examples:
 
 ## <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/198/flag-for-romania_1f1f7-1f1f4.png" alt="Romania" title="Romania" width="32" height="32" /> Utilizare
 
-<a href="http://www.youtube.com/watch?v=-r09dm2GgwU"><img src="https://puu.sh/DH7Jo/7958683d12.png" alt="Utilizare" title="Utilizare" width="640" height="360" /></a>
+<a href="http://www.youtube.com/watch?v=-r09dm2GgwU"><img src="https://user-images.githubusercontent.com/51804529/90344680-84d1ae00-e024-11ea-8d69-95aaa7ead1b6.png" alt="Utilizare" title="Utilizare" width="640" height="360" /></a>
 
 ## License
 
