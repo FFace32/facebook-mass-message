@@ -1,6 +1,6 @@
 {
   "name": "facebook-mass-message",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Send a mass message on Facebook",
   "main": "index.js",
   "bin": "index.js",
@@ -17,7 +17,7 @@
     "ejs": "^2.7.4",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "facebook-chat-api": "^1.6.1",
+    "ts-messenger-api": "^1.0.2",
     "lokijs": "^1.5.8",
     "open": "^6.4.0",
     "pkg": "^4.4.2",
@@ -25,6 +25,11 @@
     "seedrandom": "^3.0.5"
   },
   "pkg": {
-    "assets": [ "favicon/**/*", "node_modules/**/*", "public/**/*", "views/**/*" ]
+    "assets": [
+      "favicon/**/*",
+      "node_modules/**/*",
+      "public/**/*",
+      "views/**/*"
+    ]
   }
 }

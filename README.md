@@ -1,6 +1,6 @@
 # facebook-mass-message
 
-Send a mass message on Facebook with the help of [facebook-chat-api](https://github.com/Schmavery/facebook-chat-api).
+Send a mass message on Facebook with the help of [ts-messenger-api](https://github.com/makiprogrammer/ts-messenger-api).
 
 ## Usage
 

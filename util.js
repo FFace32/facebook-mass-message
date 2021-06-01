@@ -92,7 +92,7 @@ module.exports = {
         aname: "alternateName",
         fname: "firstName",
         flname: "fullName",
-        picture: "profilePicture",
+        picture: "thumbSrc",
         url: "profileUrl",
         vanity: "vanity"
     },
@@ -105,14 +105,14 @@ module.exports = {
         const all = req.query.all || "true";
         if ( req.session.uid )
         {
-            const user = users.findOne( { userID: req.session.uid } );
+            const user = users.findOne( { id: req.session.uid } );
             if ( user )
             {
                 friendvariables.nname = { value: user.nicknames[req.query.id], readonly: false };
 
                 if ( all === "true" && user.friends.includes( req.query.id ) )
                 {
-                    const friend = users.findOne( { userID: req.query.id } );
+                    const friend = users.findOne( { id: req.query.id } );
                     if ( friend )
                     {
                         for ( const variable in module.exports.friendVariableMap )

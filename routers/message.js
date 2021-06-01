@@ -1,4 +1,4 @@
-const login = require( "facebook-chat-api" );
+const login = require('ts-messenger-api').default;
 const seedrandom = require( "seedrandom" );
 const util = require( "../util" );
 
@@ -58,7 +58,7 @@ module.exports = ( app, users ) => {
         res.send( ( req.session.messages.length - 1 ).toString() );
     } );
 
-    app.post( "/sendmessage", ( req, res ) => {
+    app.post( "/sendmessage", async ( req, res ) => {
         if ( !req.session.uid )
             return res.end();
 
@@ -68,14 +68,18 @@ module.exports = ( app, users ) => {
         if ( !req.session.friends || !req.session.friends.length || !req.session.friends[req.messageID].length )
             return res.send( { error: "Please select at least one friend." } );
 
-        const user = users.findOne( { userID: req.session.uid } );
+        const user = users.findOne( { id: req.session.uid } );
         if ( !user )
             res.end();
 
         req.query.message_id = req.body.message_id; // Just because I'm too lazy to change getFriendVariables
 
-        login( { appState: user.cookies }, ( err, api ) => {
-            const sendMessages = ( current = 0 ) => {
+        try
+        {
+            const api = await login( { appState: user.cookies } );
+            await api.listen();
+
+            const sendMessages = async ( current = 0 ) => {
                 if ( current >= req.session.friends[req.messageID].length )
                 {
                     req.session.messages.splice( req.messageID, 1 );
@@ -99,18 +103,24 @@ module.exports = ( app, users ) => {
                     rng = seedrandom.alea();
 
                 req.query.id = friend.toString();
-                api.sendMessage( util.formatMessage( req.session.messages[req.messageID], util.getFriendVariables( req, users ), rng ), friend, ( err ) => {
-                    if ( err )
-                        console.log( `Error when sending message to ${friend}: `, err );
 
-                    sendMessages( current + 1 );
-                } );
+                try
+                {
+                    await api.sendMessage( { body: util.formatMessage( req.session.messages[req.messageID], util.getFriendVariables( req, users ), rng ) }, friend );
+                }
+                catch ( err )
+                {
+                    console.log( `Error when sending message to ${friend}: `, err );
+                }
+                
+                sendMessages( current + 1 );
             };
-
-            if ( err )
-                return res.send( err );
-
+            
             sendMessages();
-        } );
+        }
+        catch ( err )
+        {
+            res.send( err );
+        }
     } );
 };

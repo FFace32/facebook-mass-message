@@ -69,7 +69,7 @@ module.exports = ( app, users ) => {
         if ( !req.session.uid )
             return res.end();
 
-        const user = users.findOne( { userID: req.session.uid } );
+        const user = users.findOne( { id: req.session.uid } );
         if ( !user )
             return res.end();
 
@@ -85,7 +85,7 @@ module.exports = ( app, users ) => {
         }
         else
         {
-            const friend = users.findOne( { userID: req.body.id } );
+            const friend = users.findOne( { id: req.body.id } );
             if ( friend )
             {
                 if ( !user.nicknames )
